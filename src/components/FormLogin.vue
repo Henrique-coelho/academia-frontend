@@ -59,21 +59,21 @@ export default Vue.extend({
     senha: '',
     usuarioRules: [
       (v: any) => !!v || 'Usuário é obrigatório',
-      (v: string | any[]) => v.length <= 50 || 'Usuário deve conter no máximo 50 caracteres',
+      (v: string | any[]) => v.length <= 50 || 'Usuário deve conter no máximo 50 caracteres'
     ],
     senhaRules: [
-      (v: any) => !!v || 'Senha é obrigatório',
+      (v: any) => !!v || 'Senha é obrigatório'
     ],
     email: '',
     emailRules: [
       (v: any) => !!v || 'E-mail é obrigatório',
-      (v: string) => /.+@.+/.test(v) || 'E-mail inválido',
+      (v: string) => /.+@.+/.test(v) || 'E-mail inválido'
     ],
     usuarioRetorno: {
       id: 0,
-      nome: "",
-      email: "",
-      senha: "",
+      nome: '',
+      email: '',
+      senha: '',
       planoIsAtivo: false,
       tipoPlanoId: null
     },
@@ -81,25 +81,25 @@ export default Vue.extend({
     text: ''
   }),
   methods: {
-    clear() {
+    clear () {
       this.email = ''
       this.usuario = ''
       this.senha = ''
     },
-    login() {
+    login () {
       axios
-      .get(this.urlLogin+this.usuario+"/"+this.senha)
-      .then((res) => {
-           this.usuarioRetorno = res.data;
-           console.log(this.usuario);
-           this.$router.push('/planos/'+this.usuarioRetorno.id);
-         }).catch((error) => {
-          this.text = 'Erro ao realizar cadastro!';
-          this.snackbar = true;
-          console.log(error);
-         });
+        .get(this.urlLogin + this.usuario + '/' + this.senha)
+        .then((res) => {
+          this.usuarioRetorno = res.data
+          console.log(this.usuario)
+          this.$router.push('/planos/' + this.usuarioRetorno.id)
+        }).catch((error) => {
+          this.text = 'Erro ao realizar cadastro!'
+          this.snackbar = true
+          console.log(error)
+        })
     },
-    register() {
+    register () {
       this.$router.push('/cadastro')
     }
   }
