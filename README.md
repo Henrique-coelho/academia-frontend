@@ -1,4 +1,4 @@
-# dataflix-frontend
+# academia-frontend
 
 ## Project setup
 ```
