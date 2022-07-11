@@ -19,6 +19,14 @@
             <v-text-field class="" v-model="user.email" :rules="emailRules" label="E-mail*" required></v-text-field>
           </v-col>
         </v-row>
+        <v-row class="mx-auto">
+          <v-col>
+            <v-radio-group v-model="checkboxClienteFuncionario" row>
+              <v-radio label="Cliente" value="cliente"></v-radio>
+              <v-radio label="Funcionario" value="funcionario"></v-radio>
+            </v-radio-group>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col class="text-center">
             <v-btn class="mr-auto" color="primary" elevation="2" large raised @click="register">
@@ -31,18 +39,11 @@
         </v-row>
       </v-card>
     </v-form>
-    <v-snackbar
-      v-model="snackbar"
-    >
+    <v-snackbar v-model="snackbar">
       {{ text }}
 
       <template v-slot:action="{ attrs }">
-        <v-btn
-          color="pink"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
           Close
         </v-btn>
       </template>
@@ -82,18 +83,21 @@ export default Vue.extend({
       senha: '',
       planoIsAtivo: false,
       tipoPlanoId: null
-    }
+    },
+    checkboxCliente: false,
+    checkboxFuncionario: false,
+    checkboxClienteFuncionario: null
   }),
   methods: {
-    clear () {
+    clear() {
       this.user.email = ''
       this.user.usuario = ''
       this.user.senha = ''
     },
-    retornar () {
+    retornar() {
       this.$router.push('/login')
     },
-    register () {
+    register() {
       axios
         .post(this.urlCadastro, this.user)
         .then((res) => {
