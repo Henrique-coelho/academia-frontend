@@ -139,13 +139,6 @@
                     </v-card-actions>
                 </v-card>
             </v-row>
-            <v-row>
-                <v-col class="text-center">
-                    <v-btn class="ml-10" color="error" large raised @click="retornar()">
-                        Sair da conta
-                    </v-btn>
-                </v-col>
-            </v-row>
         </div>
         <div>
             <v-snackbar v-model="snackbar">
@@ -211,9 +204,6 @@ export default Vue.extend({
             this.snackbar=true
             console.log(input)
             setTimeout(() => (this.loading = false), 2000)
-        },
-        retornar() {
-
         }
     },
     components: {

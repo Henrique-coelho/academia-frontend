@@ -2,11 +2,17 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import FormLogin from '../views/FormLogin.vue'
 import FormCadastro from '../views/FormCadastro.vue'
+import FormHome from '../views/FormHome.vue'
 import FormPlanos from '../views/FormPlanos.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
+  {
+    path: '/',
+    name: 'home',
+    component: FormHome
+  },
   {
     path: '/login',
     name: 'login',
@@ -18,10 +24,10 @@ const routes: Array<RouteConfig> = [
     component: FormCadastro
   },
   {
-    path: '/planos/:id',
+    path: '/planos',
     name: 'planos',
     component: FormPlanos
-  },
+  }
 ]
 
 const router = new VueRouter({
