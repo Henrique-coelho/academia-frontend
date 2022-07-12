@@ -3,6 +3,7 @@
     <v-form v-model="valid">
       <v-row class="my-10"></v-row>
       <v-card class="mx-auto my-12" max-width="500">
+        <v-card-title>Cadastro</v-card-title>
         <v-row class="mx-auto">
           <v-col>
             <v-text-field v-model="user.usuario" :rules="usuarioRules" :counter="50" label="Usuário*" required>

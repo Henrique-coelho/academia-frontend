@@ -204,6 +204,7 @@ export default Vue.extend({
             this.snackbar=true
             console.log(input)
             setTimeout(() => (this.loading = false), 2000)
+            this.$router.push('/inscricao');
         }
     },
     components: {
