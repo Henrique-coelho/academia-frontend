@@ -10,14 +10,6 @@
                     <h3 class="subtitle">
                         Não se esqueça de se inscrever para receber nossas novidades, promoções e muito mais!
                     </h3>
-                    <div class="button-block" colour="white">
-                        <button class="button is-xl is-dark">
-                            Sign Up to Browse Events
-                        </button>
-                        <v-btn target="_blank" text>
-                            <span class="mr-10">Login</span>
-                        </v-btn>
-                    </div>
                 </div>
             </div>
         </section>

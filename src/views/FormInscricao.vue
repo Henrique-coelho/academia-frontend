@@ -7,7 +7,7 @@ import Vue from 'vue'
 import FormInscricao from '../components/FormInscricao.vue'
 
 export default Vue.extend({
-  name: 'Insricao',
+  name: 'Inscricao',
 
   components: {
     FormInscricao
