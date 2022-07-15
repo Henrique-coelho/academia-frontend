@@ -15,7 +15,7 @@
           @click="goToHome()" />
       </div>
       <div class="d-flex flex-row justify-space-between align-center" style="width:100%">
-        <v-divider ></v-divider>
+        <v-divider></v-divider>
 
         <v-btn @click="goToHome()" target="_blank" text>
           <span class="mr-10">Home</span>
@@ -29,12 +29,16 @@
           <span class="mr-10">Cadastro</span>
         </v-btn>
 
-        <v-btn @click="goToPlanos()" target="_blank" text>
+        <v-btn v-if="usuarioRetorno.vinculo=='SECRETARIO'" @click="goToPlanos()" target="_blank" text>
           <span class="mr-10">Planos</span>
         </v-btn>
 
         <v-btn @click="goToInscricao()" target="_blank" text>
           <span class="mr-10">Inscricao</span>
+        </v-btn>
+
+        <v-btn v-if="usuarioRetorno.vinculo=='MEDICO'" @click="goToCadastroExame()" target="_blank" text>
+          <span class="mr-10">Cadastro Exame</span>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn class="ml-10" color="error" large raised @click="retornar()">
@@ -47,40 +51,25 @@
       <router-view />
     </v-main>
 
-    <v-footer
-    dark
-    padless
-    
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-      color="black"
-    >
-      <v-card-title class="red">
-        <strong class="subheading">Conecte-se com as nossas redes sociais!</strong>
+    <v-footer dark padless>
+      <v-card class="flex" flat tile color="black">
+        <v-card-title class="red">
+          <strong class="subheading">Conecte-se com as nossas redes sociais!</strong>
 
-        <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
 
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4"
-          dark
-          icon
-        >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
+          <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
 
-      <v-card-text class="py-2 white--text text-center">
-        {{ new Date().getFullYear() }} — <strong>POKEGYM</strong>
-      </v-card-text>
-    </v-card>
-  </v-footer>
+        <v-card-text class="py-2 white--text text-center">
+          {{ new Date().getFullYear() }} — <strong>POKEGYM</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
 
   </v-app>
 </template>
@@ -92,12 +81,24 @@ export default Vue.extend({
   name: 'App',
 
   data: () => ({
+    userId: 0,
+    usuarioRetorno: {
+      "id": 0,
+      "nome": "ele",
+      "cpf": "9146238529",
+      "email": "rodrigolopesferreira4@gmail.com",
+      "senha": "123456",
+      "dataNascimento": "18/04/2020",
+      "vinculo": "MEDICO",
+      "numCartao": "123",
+      "donoCartao": "ele"
+    },
     icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
+      'mdi-facebook',
+      'mdi-twitter',
+      'mdi-linkedin',
+      'mdi-instagram',
+    ],
   }),
   methods: {
     goToHome() {
@@ -117,6 +118,9 @@ export default Vue.extend({
     },
     retornar() {
       this.$router.push('/');
+    },
+    goToCadastroExame() {
+      this.$router.push('/cadastro-exame');
     }
   }
 })
