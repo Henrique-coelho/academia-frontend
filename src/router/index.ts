@@ -6,6 +6,7 @@ import FormHome from '../views/FormHome.vue'
 import FormPlanos from '../views/FormPlanos.vue'
 import FormInscricao from '../views/FormInscricao.vue'
 import FormCadastroExame from '../views/FormCadastroExame.vue'
+import FormExame from '../views/FormExame.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes: Array<RouteConfig> = [
     path: '/cadastro-exame',
     name: 'cadastroExame',
     component: FormCadastroExame
+  },
+  {
+    path: '/exame',
+    name: 'exame',
+    component: FormExame
   },
 
 ]

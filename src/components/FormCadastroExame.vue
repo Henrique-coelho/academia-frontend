@@ -24,6 +24,30 @@
                 </v-row>
                 <v-row class="mx-auto">
                     <v-col>
+                        <v-text-field class="" v-model="exame.pressao" label="Pressão" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row class="mx-auto">
+                    <v-col>
+                        <v-text-field class="" v-model="exame.percentualGordura" label="Percentual de gordura" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row class="mx-auto">
+                    <v-col>
+                        <v-text-field class="" v-model="exame.percentualGorduraMagra" label="Percentual de gordura Magra" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row class="mx-auto">
+                    <v-col>
+                        <v-text-field class="" v-model="exame.imc" label="IMC" required>
+                        </v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row class="mx-auto">
+                    <v-col>
                         <v-textarea solo name="input-7-1" label="Descrição" auto-grow
                             :value="exame.descricao">
                         </v-textarea>
@@ -60,7 +84,7 @@ export default Vue.extend({
     data: () => ({
         urlCadastroExame: 'http://localhost:8080/api/usuario',
         valid: false,
-        exame: { nomePessoa: '', peso: 0, altura: 0, descricao: '', nomeMedico: ''},
+        exame: { nomePessoa: '', peso: 0, altura: 0, pressao: '', percentualGordura: 0, percentualGorduraMagra: 0, imc: 0, descricao: '', nomeMedico: ''},
         retorno: {},
         usuarioRules: [
             (v: any) => !!v || 'Aluno é obrigatório',

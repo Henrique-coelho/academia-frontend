@@ -6,7 +6,7 @@
         <v-card-title>Cadastro</v-card-title>
         <v-row class="mx-auto">
           <v-col>
-            <v-text-field v-model="user.usuario" :rules="usuarioRules" :counter="50" label="Usuário*" required>
+            <v-text-field v-model="user.nome" :rules="usuarioRules" :counter="50" label="Nome Funcionário*" required>
             </v-text-field>
           </v-col>
         </v-row>
@@ -23,8 +23,9 @@
         <v-row class="mx-auto">
           <v-col>
             <v-radio-group v-model="checkboxClienteFuncionario" row>
-              <v-radio label="Cliente" value="cliente"></v-radio>
-              <v-radio label="Funcionario" value="funcionario"></v-radio>
+              <v-radio label="Médico" value=3></v-radio>
+              <v-radio label="Secretário" value=1></v-radio>
+              <v-radio label="Professor" value=2></v-radio>
             </v-radio-group>
           </v-col>
         </v-row>
@@ -60,9 +61,9 @@ export default Vue.extend({
   components: {
   },
   data: () => ({
-    urlCadastro: 'http://localhost:8080/api/usuario',
+    urlCadastro: 'http://localhost:8080/api/pessoa/createOrUpdate',
     valid: false,
-    user: { usuario: '', senha: '', email: '' },
+    user: { nome: '', senha: '', email: '', vinculo: 0 },
     retorno: {},
     usuarioRules: [
       (v: any) => !!v || 'Usuário é obrigatório',
@@ -87,18 +88,16 @@ export default Vue.extend({
     },
     checkboxCliente: false,
     checkboxFuncionario: false,
-    checkboxClienteFuncionario: null
+    checkboxClienteFuncionario: 0
   }),
   methods: {
     clear() {
-      this.user.email = ''
-      this.user.usuario = ''
-      this.user.senha = ''
     },
     retornar() {
       this.$router.push('/login')
     },
     register() {
+      this.user.vinculo = this.checkboxClienteFuncionario
       axios
         .post(this.urlCadastro, this.user)
         .then((res) => {

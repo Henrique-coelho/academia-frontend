@@ -29,17 +29,22 @@
           <span class="mr-10">Cadastro</span>
         </v-btn>
 
-        <v-btn v-if="usuarioRetorno.vinculo=='SECRETARIO'" @click="goToPlanos()" target="_blank" text>
+        <v-btn v-if="usuarioRetorno.vinculo == 1" @click="goToPlanos()" target="_blank" text>
           <span class="mr-10">Planos</span>
         </v-btn>
 
-        <v-btn @click="goToInscricao()" target="_blank" text>
-          <span class="mr-10">Inscricao</span>
+        <v-btn v-if="usuarioRetorno.vinculo == 1" @click="goToInscricao()" target="_blank" text>
+          <span class="mr-10">Inscrever Cliente</span>
         </v-btn>
 
-        <v-btn v-if="usuarioRetorno.vinculo=='MEDICO'" @click="goToCadastroExame()" target="_blank" text>
+        <v-btn v-if="usuarioRetorno.vinculo == 3" @click="goToCadastroExame()" target="_blank" text>
           <span class="mr-10">Cadastro Exame</span>
         </v-btn>
+
+        <v-btn v-if="usuarioRetorno.vinculo == 3 || usuarioRetorno.vinculo == 0" @click="goToExameRetorno()" target="_blank" text>
+          <span class="mr-10">Exames</span>
+        </v-btn>
+
         <v-spacer></v-spacer>
         <v-btn class="ml-10" color="error" large raised @click="retornar()">
           Sair da conta
@@ -79,19 +84,18 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'App',
-
   data: () => ({
     userId: 0,
     usuarioRetorno: {
-      "id": 0,
-      "nome": "ele",
-      "cpf": "9146238529",
-      "email": "rodrigolopesferreira4@gmail.com",
-      "senha": "123456",
-      "dataNascimento": "18/04/2020",
-      "vinculo": "MEDICO",
-      "numCartao": "123",
-      "donoCartao": "ele"
+      id: 0,
+      nome: "ele",
+      cpf: "9146238529",
+      email: "rodrigolopesferreira4@gmail.com",
+      senha: "123456",
+      dataNascimento: "18/04/2020",
+      vinculo: 3,
+      numCartao: "123",
+      donoCartao: "ele"
     },
     icons: [
       'mdi-facebook',
@@ -115,6 +119,9 @@ export default Vue.extend({
     },
     goToInscricao() {
       this.$router.push('/inscricao');
+    },
+    goToExameRetorno() {
+      this.$router.push('/exame');
     },
     retornar() {
       this.$router.push('/');

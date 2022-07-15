@@ -6,13 +6,13 @@
         <v-card-title>Login</v-card-title>
         <v-row class="mx-auto">
           <v-col>
-            <v-text-field v-model="usuario" :rules="usuarioRules" :counter="50" label="Usuário*" required>
+            <v-text-field v-model="formLogin.usuario" :rules="usuarioRules" :counter="50" label="Usuário*" required>
             </v-text-field>
           </v-col>
         </v-row>
         <v-row class="mx-auto">
           <v-col>
-            <v-text-field v-model="senha" :rules="senhaRules" label="Senha*" required></v-text-field>
+            <v-text-field v-model="formLogin.senha" :rules="senhaRules" label="Senha*" required></v-text-field>
           </v-col>
         </v-row>
         <v-row class="mx-auto">
@@ -26,22 +26,15 @@
           </v-col>
         </v-row>
       </v-card>
-      <v-snackbar
-      v-model="snackbar"
-    >
-      {{ text }}
+      <v-snackbar v-model="snackbar">
+        {{ text }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="primary"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+        <template v-slot:action="{ attrs }">
+          <v-btn color="primary" text v-bind="attrs" @click="snackbar = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-form>
   </v-container>
 </template>
@@ -54,10 +47,12 @@ export default Vue.extend({
   components: {
   },
   data: () => ({
-    urlLogin: 'http://localhost:8080/api/login/validate/',
+    urlLogin: 'http://localhost:8080/api/pessoa/login',
     valid: false,
-    usuario: '',
-    senha: '',
+    formLogin: {
+      usuario: '',
+      senha: '',
+    },
     usuarioRules: [
       (v: any) => !!v || 'Usuário é obrigatório',
       (v: string | any[]) => v.length <= 50 || 'Usuário deve conter no máximo 50 caracteres'
@@ -72,35 +67,36 @@ export default Vue.extend({
     ],
     usuarioRetorno: {
       id: 0,
-      nome: '',
-      email: '',
-      senha: '',
-      planoIsAtivo: false,
-      tipoPlanoId: null
+      nome: "ele",
+      cpf: "9146238529",
+      email: "rodrigolopesferreira4@gmail.com",
+      senha: "123456",
+      dataNascimento: "18/04/2020",
+      vinculo: 0,
+      numCartao: "123",
+      donoCartao: "ele"
     },
     snackbar: false,
     text: ''
   }),
   methods: {
-    clear () {
-      this.email = ''
-      this.usuario = ''
-      this.senha = ''
+    clear() {
     },
-    login () {
+    login() {
       axios
-        .get(this.urlLogin + this.usuario + '/' + this.senha)
+        .post(this.urlLogin, this.formLogin)
         .then((res) => {
           this.usuarioRetorno = res.data
-          console.log(this.usuario)
-          this.$router.push('/planos/' + this.usuarioRetorno.id)
+          this.$emit('login', this.usuarioRetorno)
+          console.log(this.$parent.$data.usuarioRetorno)
+          this.$router.push('/')
         }).catch((error) => {
           this.text = 'Erro ao realizar cadastro!'
           this.snackbar = true
           console.log(error)
         })
     },
-    register () {
+    register() {
       this.$router.push('/cadastro')
     }
   }
