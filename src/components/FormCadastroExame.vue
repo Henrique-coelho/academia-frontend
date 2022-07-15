@@ -54,7 +54,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 export default Vue.extend({
-    name: 'FormCadastro',
+    name: 'FormCadastroExame',
     components: {
     },
     data: () => ({
