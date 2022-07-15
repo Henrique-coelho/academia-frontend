@@ -36,6 +36,10 @@
         <v-btn @click="goToInscricao()" target="_blank" text>
           <span class="mr-10">Inscricao</span>
         </v-btn>
+
+        <v-btn @click="goToExameRetorno()" target="_blank" text>
+          <span class="mr-10">Exame</span>
+        </v-btn>
         <v-spacer></v-spacer>
         <v-btn class="ml-10" color="error" large raised @click="retornar()">
           Sair da conta
@@ -114,6 +118,9 @@ export default Vue.extend({
     },
     goToInscricao() {
       this.$router.push('/inscricao');
+    },
+    goToExameRetorno() {
+      this.$router.push('/exame');
     },
     retornar() {
       this.$router.push('/');
